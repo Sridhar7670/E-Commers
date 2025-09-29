@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   database:
     image: postgres:16
@@ -30,4 +28,19 @@ services:
       DB_NAME: ${DB_NAME}
       DB_TYPE: postgres
       JWT_SECRET: ${JWT_SECRET}
+    
+    # --- ADD THIS SECTION FOR LIVE RELOAD ---
+    develop:
+      watch:
+        # This rule syncs source code changes without rebuilding the image.
+        # It's fast and perfect for NestJS development.
+        - action: sync
+          path: ./src
+          target: /usr/src/app/src
+
+        # This rule rebuilds the image if you change your dependencies.
+        - action: rebuild
+          path: package.json
+    # ----------------------------------------
+    
     restart: unless-stopped

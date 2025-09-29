@@ -26,9 +26,9 @@ export class UserAuthService{
         const encrypted_pass = `${salt}.${hash.toString('hex')}`;
 
         const user = await this.usersService.create(email, encrypted_pass, username, phone,role ,address);
-        const user1=JSON.stringify(user)
-        return `${user1} created sucessfully`;
-        // return  user;
+        // const user1=JSON.stringify(user)
+        // return {user1} ;
+        return  user;
     }
 
 

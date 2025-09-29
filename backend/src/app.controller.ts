@@ -19,6 +19,7 @@ export class AppController {
   }
   @Get('products/category/:category')
   findProductsByCategory(@Param('category') category: string) {
+    console.log("Products/category route is running")
   return this.adminservice.findProductsByCategory(category);
 }
   @Get('product/:id')

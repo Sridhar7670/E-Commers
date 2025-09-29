@@ -2,6 +2,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../context/AuthContext';
 
 
 const SearchIcon = () => (
@@ -11,9 +14,10 @@ const SearchIcon = () => (
   </svg>
 );
 
-export default function Header() {
 
-  const isLoggedIn = false; 
+export default function Header() {
+const router=useRouter();
+ const { isLoggedIn,  logout } = useAuth();
   const placeholders = [
     "Search for Laptops...",
     "Find new Headphones...",
@@ -65,9 +69,13 @@ export default function Header() {
       isMounted = false;
     };
   }, [index]); 
+
+
+
   return (
-    <header className="bg-[#253D61] border-[#B5D3EF]/50 p-5 shadow-md  flex justify-between items-center border-b border-[#B5D3EF]/50 ">
+    <header className="bg-[#253D61] border-[#B5D3EF]/50 p-5 shadow-md  flex justify-between items-center border-b border-[#B5D3EF]/50  sticky top-0 z-50">
       <div className="relative flex-1 max-w-xl">
+        
         <input
           type="text"
           placeholder={currentPlaceholder}
@@ -80,14 +88,14 @@ export default function Header() {
 
       {/* Login/Logout Buttons */}
       <div className="flex items-center space-x-4 ml-4">
-                 <Link href="/cart">
+                 <Link href="/Cart">
                   <button className="flex items-center gap-2 text-white px-4 py-2 rounded-md bg-[#ADCEEB]/50 hover:bg-[#FA5F1A]/80">
                     <Image src='/images/shopping-cart.svg' alt={`cart icon`} width={24} height={24} />
                     <span>Cart</span>
                   </button>
                 </Link>
         {isLoggedIn ? (
-            <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+            <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600" onClick={logout}>
             Logout
           </button>
         ) : (
@@ -97,7 +105,7 @@ export default function Header() {
                         Login
                     </button>
                 </Link>
-                <Link href="/login">
+                <Link href="/signup">
                     <button className="bg-[#ADCEEB]/50 text-white px-4 py-2 rounded-md hover:bg-blue-700">
                         Signup
                     </button>
