@@ -46,7 +46,7 @@ export class UserAuthService{
     }
     const payload = { id:user.id,email: user.email, phone: user.phone ,name:user.name};
 
-    console.log(payload,"admin service")
+    // console.log(payload,"admin service")
     const token = this.jwtService.sign(payload);
     
     return {

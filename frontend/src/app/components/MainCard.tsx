@@ -28,7 +28,9 @@ export default function MainCard({ product }: { product: Product }) {
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/cart/add/${product.id}?quantity=1`, {
+          const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}`
+
+      const res = await fetch(`${apiUrl}/cart/add/${product.id}?quantity=1`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${accessToken}`,

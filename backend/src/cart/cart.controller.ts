@@ -20,7 +20,7 @@ export class CartController {
    ){
       const id=await  req.user.id
       const qty=quantity ?? +1;
-      console.log(id)
+      // console.log(id)
       return this.cartSerivce.addProductToCart(id,productId,qty)
    }
 

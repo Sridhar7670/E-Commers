@@ -12,10 +12,10 @@ type FormErrors = {
 };
 
 export default function SignupPage() {
-  const [username, setUsername] = useState('sridhar');
-  const [email, setEmail] = useState('sridhar@test123.com');
-  const [password, setPassword] = useState('test@123');
-  const [phone, setPhone] = useState('7670893966');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
   
   const [errors, setErrors] = useState<FormErrors>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -63,8 +63,9 @@ export default function SignupPage() {
     }
 
     setIsLoading(true);
+        const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}`
 
-    const backendUrl = 'http://localhost:3000/users/signup';
+    const backendUrl = `${apiUrl}/users/signup`;
 
     try {
       const response = await fetch(backendUrl, {
@@ -87,7 +88,7 @@ export default function SignupPage() {
 
       const data = await response.json();
       // const data1= await JSON.parse(data)
-      console.log('Sign-up successful:', data);
+      // console.log('Sign-up successful:', data);
       setSuccessMessage('Account created successfully! You can now log in.');
 
       // Optionally, clear form or redirect

@@ -29,7 +29,9 @@ const FavoriteCard: FC<FavoriteCardProps> = ({ id, name, brand, imageUrl, price,
 
     try {
       // Step 1: Add the item to the cart
-      const addToCartRes = await fetch(`http://localhost:3000/cart/add/${id}?quantity=1`, {
+          const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}`
+
+      const addToCartRes = await fetch(`${apiUrl}/cart/add/${id}?quantity=1`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${accessToken}` },
       });
@@ -39,7 +41,7 @@ const FavoriteCard: FC<FavoriteCardProps> = ({ id, name, brand, imageUrl, price,
       }
 
       // Step 2: Only if Step 1 is successful, remove the item from the wishlist
-      const removeFromWishlistRes = await fetch(`http://localhost:3000/wishlist/${id}`, {
+      const removeFromWishlistRes = await fetch(`${apiUrl}/wishlist/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${accessToken}` },
       });

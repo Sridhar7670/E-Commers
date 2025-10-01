@@ -15,7 +15,7 @@ export class AdminController {
   }
   @Get('profile')
   getProfile(@Request() req) {
-    console.log(req.user,"hiii")
+    // console.log(req.user,"hiii")
     return req.user; // Contains the payload returned from JwtStrategy's validate method
   } 
  

@@ -3,6 +3,7 @@
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import CartItemCard from '../components/cartItemCard';
+import EmptyCartIcon from '../components/EmptyCart';
 
 
 // Define types for the expected API response
@@ -37,7 +38,9 @@ async function getCartData(): Promise<CartResponse | null> {
   }
 
   try {
-    const res = await fetch('http://localhost:3000/cart', {
+        const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}`
+
+    const res = await fetch(`${apiUrl}/cart`, {
       headers: {
         // Pass the cookie to the API route
         'Authorization': `Bearer ${accessToken}`,
@@ -70,10 +73,7 @@ export default async function CartPage() {
   if (!cart || cart.items.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
-        
-
-[Image of an empty shopping cart]
-
+        <EmptyCartIcon />
         <h1 className="text-3xl font-bold text-[#253D61]  mb-2">Your Cart is Empty</h1>
         <p className="text-gray-500 text-[#253D61]  mb-6">Looks like you haven't added anything to your cart yet.</p>
         <Link href="/" className="bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">

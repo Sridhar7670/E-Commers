@@ -30,7 +30,9 @@ const handleAddToWishlist = async (event: React.MouseEvent<HTMLButtonElement>) =
 
   try {
     // Make the POST request to your wishlist endpoint with the product ID
-    const res = await fetch(`http://localhost:3000/wishlist/${id}`, {
+        const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}`
+
+    const res = await fetch(`${apiUrl}/wishlist/${id}`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${accessToken}`,
@@ -64,7 +66,9 @@ const handleAddToCart = async (event:React.MouseEvent<HTMLButtonElement>) => {
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/cart/add/${id}?quantity=1`, {
+          const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}`
+
+      const res = await fetch(`${apiUrl}/cart/add/${id}?quantity=1`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${accessToken}`,

@@ -25,7 +25,9 @@ async function getWishlistData(): Promise<WishlistItem[] | null> {
   }
 
   try {
-    const res = await fetch('http://localhost:3000/wishlist', {
+        const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}`
+
+    const res = await fetch(`${apiUrl}/wishlist`, {
       headers: { 'Authorization': `Bearer ${accessToken}` },
       cache: 'no-store',
     });

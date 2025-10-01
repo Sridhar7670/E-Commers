@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // console.log(token,"at Authprovider")
     Cookies.set("accessToken", token);
     const decodedUser = jwtDecode<UserPayload>(token);
-    console.log(decodedUser)
+    // console.log(decodedUser)
     setUser(decodedUser);
     setIsLoggedIn(true);
   };

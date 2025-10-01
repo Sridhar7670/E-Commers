@@ -7,7 +7,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors({ origin: 'http://localhost:3001'});
   await app.listen(process.env.PORT ?? 3000);
-  console.log("testing")
+  // console.log("testing")
   console.log(`app is running on port ${`http://localhost:3000`}`)
 }
 

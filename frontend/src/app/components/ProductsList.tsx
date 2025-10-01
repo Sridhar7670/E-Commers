@@ -28,7 +28,9 @@ export default function ProductList({category}:Category) {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const res = await fetch(`http://localhost:3000/products/category/${category}`);
+            const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}`
+
+        const res = await fetch(`${apiUrl}/products/category/${category}`);
         if (!res.ok) {
           throw new Error('Failed to fetch products');
         }

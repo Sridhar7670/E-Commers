@@ -20,7 +20,10 @@ export default function LoginPage() {
 
     // This is the backend URL where the data will be sent.
     // Replace this with your actual API endpoint.(render, vercel)
-    const backendUrl = 'http://localhost:3000/users/signin';
+    const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}`
+    // console.log(apiUrl)
+    const backendUrl = `${apiUrl}/users/signin`;
+    // console.log(backendUrl);
 
     try {
       const response = await fetch(backendUrl, {

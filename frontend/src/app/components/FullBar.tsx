@@ -29,7 +29,9 @@ export default function FullBar({ heading,Url }: FullBarProps) {
     const fetchProducts = async () => {
       try {
         const url=encodeURIComponent(Url);
-        const response = await fetch(`http://localhost:3000/products/category/${url}`);
+            const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}`
+
+        const response = await fetch(`${apiUrl}/products/category/${url}`);
         const data = await response.json();
         setProducts(data); 
         SetLoading(false)

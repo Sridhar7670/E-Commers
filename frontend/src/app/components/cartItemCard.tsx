@@ -42,14 +42,16 @@ export default function CartItemCard({
       headers: { 'Authorization': `Bearer ${accessToken}` },
     };
 
+        const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}`
+
     if (action === 'remove' ) {
-      url = `http://localhost:3000/cart/${productId}`;
+      url = `${apiUrl}/cart/${productId}`;
       options.method = 'DELETE';
     } else if (action === 'add') {
-      url = `http://localhost:3000/cart/add/${productId}?quantity=${quantity}`;
+      url = `${apiUrl}/cart/add/${productId}?quantity=${quantity}`;
       options.method = 'POST';
     } else if (action === 'reduce') {
-      url = `http://localhost:3000/cart/reduce/${productId}?quantity=${quantity}`;
+      url = `${apiUrl}/cart/reduce/${productId}?quantity=${quantity}`;
       options.method = 'POST';
     }
 
